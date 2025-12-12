@@ -1,19 +1,19 @@
-const img = document.createElement('img');
-const p = document.createElement('p');
+const imgName = document.createElement('img');
+const imgById = document.createElement('img');
+const nameByIdEl = document.getElementById('nameId');
 
-document.getElementById('imagem').appendChild(img);
-document.getElementById('imagemId').appendChild(img);
-document.getElementById('nameId').appendChild(p);
+document.getElementById('imagem').appendChild(imgName);
+document.getElementById('imagemId').appendChild(imgById);
 
 async function buscarPersonagem() {
-    const input = document.getElementById('name').value.toLowerCase();
+    const input = document.getElementById('name').value.trim().toLowerCase();
     try {
-        const response = await fetch(`https://api.disneyapi.dev/character?name=${input}`);
+        const query = encodeURIComponent(input);
+        const response = await fetch(`https://api.disneyapi.dev/character?name=${query}`);
         const data = await response.json();
         
         if (data.data && data.data.length > 0) {
-            img.src = data.data[0].imageUrl;
-            p.textContent = data.data.name
+            imgName.src = data.data[0].imageUrl;
         } else {
             console.log('Personagem não encontrado');
             alert('Personagem não encontrado. Por favor, tente novamente.');
@@ -35,8 +35,8 @@ async function buscarPersonagemId() {
             alert('Personagem não encontrado, tente do id 10 ao id 10103');
         } 
         if (data.data) {
-            img.src = data.data.imageUrl;
-            p.textContent = data.data.name;
+            imgById.src = data.data.imageUrl;
+            if (nameByIdEl) nameByIdEl.textContent = data.data.name;
         } else {
             console.log('Personagem não encontrado');
             alert('Personagem não encontrado. Por favor, tente novamente.');

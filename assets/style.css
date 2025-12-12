@@ -1,71 +1,154 @@
 * {
-    margin : 0;
-    padding : 0;
-    box-sizing : border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family : 'Arial', sans-serif;
-    background-color: rgb(46, 27, 106);
-    color : #fff;
-    line-height : 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #2e1b6a;
+    background-image: radial-gradient(circle at top, #452c8a, #2e1b6a);
+    color: #fff;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.title{
-    color: #004d99;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+header {
     text-align: center;
-    align-items: center;
-    justify-content: center;
+    padding: 40px 20px;
+}
+
+.title {
+    font-family: 'Georgia', serif;
+    color: #fff;
+    font-size: 3rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    margin-bottom: 5px;
+}
+
+header p {
+    color: #a9a0d6;
+    font-size: 1.1rem;
 }
 
 header::after {
     content: '';
     display: block;
-    width: 60px;
-    height: 3px;
+    width: 80px;
+    height: 4px;
     background-color: #ffcc00;
-    margin: 15px auto 30px;
+    margin: 20px auto 0;
     border-radius: 5px;
-}   
-
-input[type="text"], input[type="email"], textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0 20px 0;
-    border: none;
-    border-radius: 5px;
+    box-shadow: 0 0 10px #ffcc00;
 }
 
-button{
-    width: 30%;
-    padding: 12px 10px;
+.container {
+    flex: 1;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.search-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 30px;
+    flex: 1;
+    min-width: 300px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.search-card:hover {
+    transform: translateY(-5px);
+    border-color: #ffcc00;
+}
+
+.search-card h2 {
+    color: #ffcc00;
+    margin-bottom: 10px;
+}
+
+.search-card p {
+    font-size: 0.9rem;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    font-size: 1rem;
+}
+
+button {
+    padding: 12px 20px;
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 5px;
-    font-size: 1em;
+    border-radius: 8px;
+    font-weight: bold;
     cursor: pointer;
-    display: inline-block;
+    transition: background 0.3s;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #ffcc00;
+    color: #2e1b6a;
 }
 
-#imagem {
-  margin-top: 30px;
-  min-height: 300px;
-  border: 2px dashed #ccc;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #666;
-  font-style: italic;
-  padding: 20px;
+.result-area {
+    min-height: 250px;
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
-#imagem:empty:before {
-    content: "A imagem do personagem aparecerá aqui.";
+
+.result-area img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.result-area:empty::before {
+    content: "✨ Aguardando magia...";
+    color: #a9a0d6;
+    font-style: italic;
+}
+
+.character-name {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #888;
 }
