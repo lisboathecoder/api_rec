@@ -10,3 +10,62 @@ body {
     color : #fff;
     line-height : 1.6;
 }
+
+.title{
+    color: #004d99;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+header::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #ffcc00;
+    margin: 15px auto 30px;
+    border-radius: 5px;
+}   
+
+input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+button{
+    width: 30%;
+    padding: 12px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    display: inline-block;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#imagem {
+  margin-top: 30px;
+  min-height: 300px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666;
+  font-style: italic;
+  padding: 20px;
+}
+#imagem:empty:before {
+    content: "A imagem do personagem aparecerá aqui.";
+}
