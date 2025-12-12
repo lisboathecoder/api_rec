@@ -57,8 +57,12 @@ async function buscarPersonagemId() {
     const resposta = await fetch(`https://api.disneyapi.dev/character/${id}`);
     const dados = await resposta.json();
 
+    if (resposta.status === 404) {
+      alert("Personagem não encontrado, tente outro ID.");
+      return;
+    }
     if (resposta.status !== 200 || !dados.data) {
-      alert("Personagem não encontrado, tente do id 10 ao id 10103");
+      alert("Personagem não encontrado, tente outro ID.");
       return;
     }
 
