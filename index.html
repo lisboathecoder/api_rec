@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personagens da Disney</title>
-    <link rel="stylesheet" href="./assets/style.css">
-    <script src="./assets/js/script.js" defer></script>
+    <script src="api_rec/assets/script.js" defer></script>
+    <link rel="stylesheet" href="api_rec/assets/style.css">
 </head>
 <body>
     <header>
@@ -15,4 +15,13 @@
         <div id="imagem"></div>
     </header>
 </body>
+
+<div>
+    <h1>Buscar Personagem por ID</h1>
+    <p>Busca do Id 10 ao Id 10103</p>
+    <input id="id" placeholder="Digite o ID do Personagem" />
+    <button onclick="buscarPersonagemId()">Buscar personagem</button>
+    <div id="imagemId"></div>
+    <p id="nameId"></p>
+</div>
 </html>
