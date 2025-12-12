@@ -36,4 +36,3 @@ api_rec/
 
 ## 🔗 Link API externa
 https://api.disneyapi.dev/character
-
