@@ -1,74 +1,71 @@
-const imgName = document.createElement('img');
-const imgById = document.createElement('img');
-const nameByIdEl = document.getElementById('nameId');
-const nameByNameEl = document.getElementById('nameByName');
-const idByNameEl = document.getElementById('idByName');
+const imgPorNome = document.createElement("img");
+const imgPorId = document.createElement("img");
+const nomeElemento = document.getElementById("nameId");
+const nomePorNome = document.getElementById("nameByName");
+const idPorNome = document.getElementById("idByName");
 
-document.getElementById('imagem').appendChild(imgName);
-document.getElementById('imagemId').appendChild(imgById);
+document.getElementById("imagem").appendChild(imgPorNome);
+document.getElementById("imagemId").appendChild(imgPorId);
 
 async function buscarPersonagem() {
-    const raw = document.getElementById('name').value.trim();
-    if (!raw) {
-        alert('Digite um nome para buscar.');
-        return;
+  const entrada = document.getElementById("name").value.trim();
+  if (!entrada) {
+    alert("Digite um nome para buscar.");
+    return;
+  }
+
+  try {
+    const consulta = encodeURIComponent(entrada);
+    const resposta = await fetch(
+      `https://api.disneyapi.dev/character?name=${consulta}`
+    );
+    const dados = await resposta.json();
+    const lista = Array.isArray(dados.data) ? dados.data : [];
+
+    if (lista.length === 0) {
+      alert("Personagem não encontrado.");
+      nomePorNome.textContent = "";
+      idPorNome.textContent = "";
+      return;
     }
-    const input = raw.toLowerCase();
-    try {
-        const query = encodeURIComponent(input);
-        const response = await fetch(`https://api.disneyapi.dev/character?name=${query}`);
-        const data = await response.json();
-        const list = Array.isArray(data.data) ? data.data : [];
 
-        if (list.length > 0) {
-            const norm = (s) => s
-                .toLowerCase()
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '')
-                .trim();
-            const nInput = norm(raw);
+    const normalizar = (texto) =>
+      texto // essa função é pra normalizar o texto
+        .toLowerCase()
+        .trim();
 
-            let chosen = list.find((c) => norm(c.name) === nInput);
-            if (!chosen) chosen = list.find((c) => norm(c.name).includes(nInput));
-            if (!chosen) chosen = list[0];
+    const entradaNorm = normalizar(entrada);
+    const personagem =
+      lista.find((p) => normalizar(p.name) === entradaNorm) ||
+      lista.find((p) => normalizar(p.name).includes(entradaNorm)) ||
+      lista[0];
 
-            imgName.src = chosen.imageUrl;
-            imgName.alt = chosen.name || 'Character image';
-            imgName.title = chosen.name || '';
-            if (nameByNameEl) nameByNameEl.textContent = chosen.name || '';
-            if (idByNameEl) idByNameEl.textContent = 'ID: ' + (chosen._id || '');
-        } else {
-            console.log('Personagem não encontrado');
-            alert('Personagem não encontrado. Por favor, tente novamente.');
-            if (nameByNameEl) nameByNameEl.textContent = '';
-            if (idByNameEl) idByNameEl.textContent = '';
-        }
-    } catch (error) {
-        console.error('Erro ao buscar o/a Personagem:', error);
-        alert('Erro ao buscar o personagem. Por favor, tente novamente.');
-    }
+    imgPorNome.src = personagem.imageUrl;
+    imgPorNome.alt = personagem.name;
+    nomePorNome.textContent = personagem.name;
+    idPorNome.textContent = `ID: ${personagem._id}`;
+  } catch (erro) {
+    console.error("Erro ao buscar personagem:", erro);
+    alert("Erro ao buscar personagem.");
+  }
 }
 
 async function buscarPersonagemId() {
-    const input = document.getElementById('id').value;
-    try {
-        const response = await fetch (`https://api.disneyapi.dev/character/${input}`);
-        const data = await response.json();
+  const id = document.getElementById("id").value;
 
-        if(response.status !== 200) {
-            console.log('Personagem não encontrado');
-            alert('Personagem não encontrado, tente do id 10 ao id 10103');
-            return;
-        } 
-        if (data && data.data) {
-            imgById.src = data.data.imageUrl;
-            if (nameByIdEl) nameByIdEl.textContent = data.data.name;
-        } else {
-            console.log('Personagem não encontrado');
-            alert('Personagem não encontrado. Por favor, tente novamente.');
-        }
-    } catch (error) {
-        console.error('Erro ao buscar o/a Personagem pelo ID:', error);
-        alert('ID inválido. Por favor, tente novamente.');
+  try {
+    const resposta = await fetch(`https://api.disneyapi.dev/character/${id}`);
+    const dados = await resposta.json();
+
+    if (resposta.status !== 200 || !dados.data) {
+      alert("Personagem não encontrado, tente do id 10 ao id 10103");
+      return;
     }
+
+    imgPorId.src = dados.data.imageUrl;
+    nomeElemento.textContent = dados.data.name;
+  } catch (erro) {
+    console.error("Erro ao buscar personagem por ID:", erro);
+    alert("ID inválido.");
+  }
 }
