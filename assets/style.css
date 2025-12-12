@@ -144,6 +144,12 @@ button:hover {
     color: #ffcc00;
 }
 
+.character-id {
+    margin-top: 5px;
+    font-size: 0.95rem;
+    color: #a9a0d6;
+}
+
 footer {
     background-color: rgba(0, 0, 0, 0.3);
     text-align: center;
