@@ -6,7 +6,7 @@ document.getElementById('imagemId').appendChild(img);
 document.getElementById('nameId').appendChild(p);
 
 async function buscarPersonagem() {
-    const input = document.getElementById('nome').value.toLowerCase();
+    const input = document.getElementById('name').value.toLowerCase();
     try {
         const response = await fetch(`https://api.disneyapi.dev/character?name=${input}`);
         const data = await response.json();
