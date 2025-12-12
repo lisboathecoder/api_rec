@@ -30,6 +30,10 @@ async function buscarPersonagemId() {
         const response = await fetch (`https://api.disneyapi.dev/character/${input}`);
         const data = await response.json();
 
+        if(response.status !== 200) {
+            console.log('Personagem não encontrado');
+            alert('Personagem não encontrado, tente do id 10 ao id 10103');
+        } 
         if (data.data) {
             img.src = data.data.imageUrl;
             p.textContent = data.data.name;
@@ -38,6 +42,7 @@ async function buscarPersonagemId() {
             alert('Personagem não encontrado. Por favor, tente novamente.');
         }
     } catch (error) {
+        
         console.error('Erro ao buscar o/a Personagem pelo ID:', error);
         alert('ID inválido. Por favor, tente novamente.');
     }
