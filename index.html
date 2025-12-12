@@ -7,25 +7,47 @@
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
-    <link rel="manifest" href="assets/site.webmanifest">
-    <script src="assets/script.js" defer></script>
+    
     <link rel="stylesheet" href="assets/style.css">
+    <script src="assets/script.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1 div="title">Disney</h1>
-        <input id="name" placeholder="Digite o nome do personagem da Disney" />
-        <button onclick="buscarPersonagem()">Buscar</button>
-        <div id="imagem"></div>
-    </header>
-</body>
 
-<div>
-    <h1>Buscar Personagem por ID</h1>
-    <p>Busca do Id 10 ao Id 10103</p>
-    <input id="id" placeholder="Digite o ID do Personagem" />
-    <button onclick="buscarPersonagemId()">Buscar personagem</button>
-    <div id="imagemId"></div>
-    <p id="nameId"></p>
-</div>
+    <header>
+        <div class="header-content">
+            <h1 class="title">Disney API</h1>
+            <p>Explore a magia dos personagens</p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="search-card">
+            <h2>Buscar por Nome</h2>
+            <p>Encontre seu personagem favorito</p>
+            <div class="input-group">
+                <input id="name" type="text" placeholder="Ex: Mickey Mouse" />
+                <button onclick="buscarPersonagem()">Buscar</button>
+            </div>
+            <div id="imagem" class="result-area"></div>
+        </section>
+
+        <section class="search-card">
+            <h2>Buscar por ID</h2>
+            <p>Busca do Id 10 ao 10103</p>
+            <div class="input-group">
+                <input id="id" type="number" placeholder="Ex: 150" />
+                <button onclick="buscarPersonagemId()">Buscar</button>
+            </div>
+            <div id="imagemId" class="result-area"></div>
+            <p id="nameId" class="character-name"></p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Fanpage Disney. Desenvolvido com magia.</p>
+    </footer>
+
+</body>
 </html>
